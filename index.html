@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FotoShop</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon-32x32.png"/>
+    <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-top">
+            <div class="nav-left">
+                <h1>FotoShop</h1>
+            </div>
+
+            <div class="nav-right">
+                <!-- Caixa de busca -->
+                <input type="text" id="busca" placeholder="Buscar produto...">
+
+                <!-- Filtro por categoria -->
+                <select id="filtroCategoria">
+                    <option value="">Todas as categorias</option>
+                </select>
+
+                <!-- Ordenação -->
+                <select id="ordenar">
+                    <option value="">Ordenar</option>
+                    <option value="preco-asc">Preço ↑</option>
+                    <option value="preco-desc">Preço ↓</option>
+                    <option value="nome-asc">Nome A-Z</option>
+                    <option value="nome-desc">Nome Z-A</option>
+                </select>
+
+                <!-- Botão do carrinho com ícone -->
+                <a href="carrinho.html" class="botao-carrinho">🛒</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="catalogo"></main>
+
+    <!-- Modal de Detalhe do Produto -->
+    <div id="modalProduto" class="modal">
+        <div class="modal-content">
+            <span class="fechar">&times;</span>
+            <h2 id="modalNome"></h2>
+            <p id="modalPreco"></p>
+            <div class="galeria">
+                <img id="imgPrincipal" src="" alt="">
+                <div class="miniaturas" id="miniaturas"></div>
+            </div>
+            <p id="modalDescricao">Descrição do produto...</p>
+            <button id="adicionarModal">Adicionar ao carrinho</button>
+        </div>
+    </div>
+
+    <script src="js/catalogo.js"></script>
+</body>
+</html>

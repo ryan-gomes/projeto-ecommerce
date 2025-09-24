@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - E-commerce Fotografia</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon-32x32.png" />
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body>
+    <header>
+        <h1>Checkout</h1>
+        <nav>
+            <a href="carrinho.html">Voltar ao carrinho</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="resumoCarrinho">
+            <h2>Resumo do Pedido</h2>
+            <div id="itensResumo"></div>
+            <p>Total: R$ <span id="totalResumo">0.00</span></p>
+        </div>
+
+        <!-- Formulário de Endereço -->
+        <form id="checkoutForm">
+            <label>CEP:
+                <input type="text" id="cep" maxlength="9" placeholder="00000-000">
+            </label>
+
+            <label>Rua:
+                <input type="text" id="rua">
+            </label>
+
+            <div class="flex-row">
+                <label>Número:
+                    <input type="text" id="numero">
+                </label>
+
+                <label>Bairro:
+                    <input type="text" id="bairro">
+                </label>
+            </div>
+
+            <div class="flex-row">
+                <label>Cidade:
+                    <input type="text" id="cidade">
+                </label>
+
+                <label>UF:
+                    <input type="text" id="uf" maxlength="2">
+                </label>
+            </div>
+
+            <div id="mensagem" aria-live="polite"></div>
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </main>
+    <script src="js/checkout.js"></script>
+</body>
+
+</html>

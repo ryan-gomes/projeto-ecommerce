@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho - E-commerce Fotografia</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon-32x32.png" />
+  <link rel="stylesheet" href="css/carrinho.css">
+</head>
+<body>
+    <main>
+        <h1>Seu Carrinho</h1>
+
+        <!-- Botão de voltar para página inicial -->
+        <a href="index.html">
+            <button class="voltar">← Voltar para Página Inicial</button>
+        </a>
+
+        <!-- Lista de itens -->
+        <div id="itensCarrinho"></div>
+
+        <p>Total: R$ <span id="totalCarrinho">0.00</span></p>
+
+        <!-- Botão para finalizar compra -->
+        <a href="checkout.html">
+            <button class="finalizar">Ir para Checkout</button>
+        </a>
+    </main>
+
+    <script src="js/carrinho.js" defer></script>
+</body>
+</html>
