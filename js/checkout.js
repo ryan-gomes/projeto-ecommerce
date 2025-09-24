@@ -3,6 +3,7 @@ let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
 const itensResumo = document.getElementById("itensResumo");
 const totalResumo = document.getElementById("totalResumo");
+const finalizarBtn = document.querySelector("#checkoutForm button[type='submit']"); // Botão de finalizar
 
 function renderizarResumo() {
     itensResumo.innerHTML = "";
@@ -11,6 +12,7 @@ function renderizarResumo() {
     if (carrinho.length === 0) {
         itensResumo.innerHTML = "<p>Seu carrinho está vazio.</p>";
         totalResumo.textContent = "0.00";
+        atualizarBotaoFinalizar(false); // 🔒 Desabilita se vazio
         return;
     }
 
@@ -25,7 +27,7 @@ function renderizarResumo() {
                 <span>${item.quantidade}</span>
                 <button class="incrementar" data-id="${item.id}">+</button>
             </div>
-            <span>R$ ${(item.preco*item.quantidade).toFixed(2)}</span>
+            <span>R$ ${(item.preco * item.quantidade).toFixed(2)}</span>
         `;
 
         div.style.animation = "none";
@@ -35,8 +37,9 @@ function renderizarResumo() {
     });
 
     totalResumo.textContent = total.toFixed(2);
+    atualizarBotaoFinalizar(true); // ✅ Habilita se tiver itens
 
-    // Eventos dos botões
+    // Eventos dos botões de + e -
     document.querySelectorAll(".incrementar").forEach(btn => {
         btn.addEventListener("click", () => {
             const id = Number(btn.getAttribute("data-id"));
@@ -66,8 +69,18 @@ function alterarQuantidade(id, delta) {
     renderizarResumo();
 }
 
-renderizarResumo();
+// ✅ Função para habilitar/desabilitar o botão de finalizar
+function atualizarBotaoFinalizar(ativo) {
+    if (ativo) {
+        finalizarBtn.disabled = false;
+        finalizarBtn.classList.remove("desabilitado");
+    } else {
+        finalizarBtn.disabled = true;
+        finalizarBtn.classList.add("desabilitado");
+    }
+}
 
+renderizarResumo();
 
 // ======== ViaCEP + Formulário ========
 const form = document.getElementById("checkoutForm");
@@ -81,11 +94,11 @@ const mensagem = document.getElementById("mensagem");
 
 cepInput.addEventListener("input", async () => {
     const cep = cepInput.value.replace(/\D/g, '');
-    if(cep.length === 8){
+    if (cep.length === 8) {
         try {
             const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
             const data = await res.json();
-            if(data.erro){
+            if (data.erro) {
                 mensagem.textContent = "CEP não encontrado. Preencha manualmente.";
             } else {
                 rua.value = data.logradouro;
@@ -101,7 +114,8 @@ cepInput.addEventListener("input", async () => {
     }
 });
 
-form.addEventListener("submit", (e)=>{
+form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (carrinho.length === 0) return; // 🔒 Segurança extra
     alert("Compra finalizada!");
 });
