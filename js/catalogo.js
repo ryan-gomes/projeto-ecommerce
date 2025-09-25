@@ -37,6 +37,102 @@ const produtos = [
         "./assets/produtos/tripe.jpg",
         "Tripé leve e portátil, ideal para fotografia em campo."
     ),
+    new Produto(
+        4,
+        "Flash Speedlite",
+        890,
+        "Acessórios",
+        "./assets/produtos/flash-speedlite.jpg",
+        "Flash externo com múltiplos modos e alta velocidade de sincronização."
+    ),
+    new Produto(
+        5,
+        "Cartão SD 128GB",
+        350,
+        "Acessórios",
+        "./assets/produtos/cartao-sd-128gb.png",
+        "Cartão de memória rápido e confiável para gravação de fotos e vídeos em alta definição."
+    ),
+    new Produto(
+        6,
+        "Kit Iluminação LED",
+        780,
+        "Iluminação",
+        "./assets/produtos/kit-iluminacao-led.png",
+        "Kit de luz contínua LED com ajuste de temperatura de cor."
+    ),
+    new Produto(
+        7,
+        "Câmera Mirrorless",
+        5200,
+        "Câmeras",
+        "./assets/produtos/camera-mirrorless.jpg",
+        "Câmera mirrorless com sensor full-frame e gravação 4K."
+    ),
+    new Produto(
+        8,
+        "Gimbal Estabilizador",
+        1100,
+        "Acessórios",
+        "./assets/produtos/gimbal.webp",
+        "Estabilizador eletrônico para vídeos suaves e profissionais."
+    ),
+    new Produto(
+        9,
+        "Mochila Fotográfica",
+        450,
+        "Acessórios",
+        "./assets/produtos/mochila-fotografica.png",
+        "Mochila acolchoada e resistente para transporte seguro de equipamentos."
+    ),
+    new Produto(
+        10,
+        "Filtro ND",
+        220,
+        "Filtros",
+        "./assets/produtos/filtro-nd.webp",
+        "Filtro de densidade neutra para controle de exposição em ambientes muito claros."
+    ),
+    new Produto(
+        11,
+        "Lente Grande Angular 16mm",
+        2800,
+        "Lentes",
+        "./assets/produtos/lente-grande-angular.png",
+        "Lente grande angular ideal para paisagens e arquitetura."
+    ),
+    new Produto(
+        12,
+        "Lente Macro 100mm",
+        3200,
+        "Lentes",
+        "./assets/produtos/lente-macro.jpg",
+        "Lente macro para capturar detalhes impressionantes em close-up."
+    ),
+    new Produto(
+        13,
+        "Microfone Shotgun",
+        980,
+        "Áudio",
+        "./assets/produtos/microfone-shotgun.webp",
+        "Microfone direcional de alta sensibilidade para gravações nítidas."
+    ),
+    new Produto(
+        14,
+        "Drone Fotográfico 4K",
+        6400,
+        "Drones",
+        "./assets/produtos/drone-4k.webp",
+        "Drone com câmera 4K estabilizada e longa autonomia de voo."
+    ),
+    new Produto(
+        15,
+        "Softbox 60x60cm",
+        390,
+        "Iluminação",
+        "./assets/produtos/softbox-60x60.webp",
+        "Softbox para difusão de luz suave em estúdios fotográficos."
+    )
 ];
 
 // ===== Carrega categorias =====
@@ -91,11 +187,11 @@ function filtrar() {
 document.getElementById("ordenar").addEventListener("change", (e) => {
     const ordem = e.target.value;
     const copia = [...produtos];
-    switch(ordem) {
-        case "preco-asc": copia.sort((a,b)=>a.preco-b.preco); break;
-        case "preco-desc": copia.sort((a,b)=>b.preco-a.preco); break;
-        case "nome-asc": copia.sort((a,b)=>a.nome.localeCompare(b.nome)); break;
-        case "nome-desc": copia.sort((a,b)=>b.nome.localeCompare(a.nome)); break;
+    switch (ordem) {
+        case "preco-asc": copia.sort((a, b) => a.preco - b.preco); break;
+        case "preco-desc": copia.sort((a, b) => b.preco - a.preco); break;
+        case "nome-asc": copia.sort((a, b) => a.nome.localeCompare(b.nome)); break;
+        case "nome-desc": copia.sort((a, b) => b.nome.localeCompare(a.nome)); break;
     }
     renderizarCatalogo(copia);
 });
@@ -112,7 +208,16 @@ function adicionarCarrinho(id) {
         carrinho.push({ ...produto, quantidade: 1 });
     }
 
+    // Salva no localStorage
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+    // === Atualiza contador no ícone ===
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount) {
+        const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+        cartCount.textContent = totalItens;
+        cartCount.style.display = totalItens > 0 ? "inline-block" : "none";
+    }
 
     // === Toastify ===
     Toastify({
@@ -129,6 +234,17 @@ function adicionarCarrinho(id) {
         },
     }).showToast();
 }
+
+// Atualiza o contador quando a página carrega
+document.addEventListener("DOMContentLoaded", () => {
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount) {
+        const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+        cartCount.textContent = totalItens;
+        cartCount.style.display = totalItens > 0 ? "inline-block" : "none";
+    }
+});
 
 // ===== Modal =====
 const modal = document.getElementById("modalProduto");
@@ -154,7 +270,7 @@ function abrirModal(produto) {
     imgs.forEach((img, i) => {
         const thumb = document.createElement("img");
         thumb.src = img;
-        if(i===0) thumb.classList.add("active");
+        if (i === 0) thumb.classList.add("active");
         thumb.addEventListener("click", () => {
             imgPrincipal.src = img;
             document.querySelectorAll("#miniaturas img").forEach(t => t.classList.remove("active"));
