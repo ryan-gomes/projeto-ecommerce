@@ -1,11 +1,45 @@
-// Mock de produtos
+// ===== Classe Produto =====
+class Produto {
+    constructor(id, nome, preco, categoria, img, descricao, galeria = []) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.categoria = categoria;
+        this.img = img;
+        this.descricao = descricao;
+        this.galeria = galeria;
+    }
+}
+
+// ===== Mock de produtos como Objetos =====
 const produtos = [
-    {id: 1, nome: "Câmera DSLR", preco: 3500, categoria: "Câmeras", img: "./assets/produtos/nikon-D750.webp", descricao: "Câmera DSLR full-frame com alta resolução e desempenho em baixa luz.",},
-    {id: 2, nome: "Lente 50mm", preco: 1200, categoria: "Lentes", img: "./assets/produtos/lente-50mm.jpg", descricao: "Lente prime 50mm f/1.8 para retratos e baixa luminosidade."},
-    {id: 3, nome: "Tripé", preco: 250, categoria: "Acessórios", img: "./assets/produtos/tripe.jpg", descricao: "Tripé leve e portátil, ideal para fotografia em campo."},
+    new Produto(
+        1,
+        "Câmera DSLR",
+        3500,
+        "Câmeras",
+        "./assets/produtos/nikon-D750.webp",
+        "Câmera DSLR full-frame com alta resolução e desempenho em baixa luz."
+    ),
+    new Produto(
+        2,
+        "Lente 50mm",
+        1200,
+        "Lentes",
+        "./assets/produtos/lente-50mm.jpg",
+        "Lente prime 50mm f/1.8 para retratos e baixa luminosidade."
+    ),
+    new Produto(
+        3,
+        "Tripé",
+        250,
+        "Acessórios",
+        "./assets/produtos/tripe.jpg",
+        "Tripé leve e portátil, ideal para fotografia em campo."
+    ),
 ];
 
-// Carrega categorias
+// ===== Carrega categorias =====
 const filtroCategoria = document.getElementById("filtroCategoria");
 const categorias = [...new Set(produtos.map(p => p.categoria))];
 categorias.forEach(cat => {
@@ -28,7 +62,7 @@ function renderizarCatalogo(produtosRender) {
             <img src="${prod.img}" alt="${prod.nome}">
             <div class="info">
                 <h3>${prod.nome}</h3>
-                <p>R$ ${prod.preco.toFixed(2)}</p>
+                <p>R$ ${prod.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <button onclick="adicionarCarrinhoOuDetalhe(${prod.id})">Ver Detalhes</button>
             </div>
         `;
@@ -71,13 +105,29 @@ function adicionarCarrinho(id) {
     let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
     const produto = produtos.find(p => p.id === id);
     const existente = carrinho.find(p => p.id === id);
+
     if (existente) {
         existente.quantidade += 1;
     } else {
-        carrinho.push({...produto, quantidade: 1});
+        carrinho.push({ ...produto, quantidade: 1 });
     }
+
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    alert(`${produto.nome} adicionado ao carrinho!`);
+
+    // === Toastify ===
+    Toastify({
+        text: `${produto.nome} adicionado ao carrinho.`,
+        duration: 2500,
+        gravity: "top",
+        position: "center",
+        style: {
+            background: "#ff6f61",
+            color: "#fff",
+            borderRadius: "6px",
+            padding: "10px 16px",
+            fontSize: "0.95rem",
+        },
+    }).showToast();
 }
 
 // ===== Modal =====
@@ -93,14 +143,14 @@ const btnFechar = document.querySelector(".fechar");
 function abrirModal(produto) {
     modal.style.display = "block";
     modalNome.textContent = produto.nome;
-    modalPreco.textContent = `R$ ${produto.preco.toFixed(2)}`;
+    modalPreco.textContent = `R$ ${produto.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     modalDescricao.textContent = produto.descricao || "Descrição não disponível";
 
     imgPrincipal.src = produto.img;
     imgPrincipal.alt = produto.nome;
 
     miniaturas.innerHTML = "";
-    const imgs = produto.galeria || [produto.img];
+    const imgs = produto.galeria.length ? produto.galeria : [produto.img];
     imgs.forEach((img, i) => {
         const thumb = document.createElement("img");
         thumb.src = img;

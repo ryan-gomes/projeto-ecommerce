@@ -25,7 +25,11 @@ header h1 {
   color: #333;
 }
 
-/* Link para voltar ao carrinho */
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
 header nav a {
   text-decoration: none;
   background-color: #ff6f61;
@@ -96,22 +100,24 @@ main {
   gap: 8px;
 }
 
-.incrementar,
-.decrementar {
-  background-color: #ff6f61;
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.quantidade-container button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
-.incrementar:hover,
-.decrementar:hover {
-  background-color: #e85b50;
-  transform: scale(1.01);
+
+.quantidade-container span {
+    min-width: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 /* Total do pedido */

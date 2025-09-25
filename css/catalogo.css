@@ -10,6 +10,12 @@ body {
     color: #333;
 }
 
+:root {
+    --cor-primaria: #ff6f61;
+    --cor-secundaria: #333;
+    --cor-fundo: #fff;
+}
+
 /* ============================
    Navegação superior
 ============================ */
@@ -18,14 +24,16 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #fff;
+    background-color: var(--cor-fundo);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     flex-wrap: wrap;
 }
 
-.nav-left h1 {
+.nav-left a {
     font-size: 1.8rem;
-    color: #333;
+    color: var(--cor-card);
+    text-decoration: none;
+    inline-size: 2px;
 }
 
 .nav-right {
@@ -34,18 +42,9 @@ body {
     gap: 15px;
 }
 
-/* Caixas de busca e filtros */
-#busca, #filtroCategoria, #ordenar {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    outline: none;
-    transition: box-shadow 0.3s;
-}
-
-#busca:focus, #filtroCategoria:focus, #ordenar:focus {
-    box-shadow: 0 0 6px #ff6f61;
-}
+/* #busca:focus, #filtroCategoria:focus, #ordenar:focus {
+    box-shadow: 0 0 6px var(--cor-secundaria);
+} */
 
 /* Botão de carrinho */
 .botao-carrinho {
@@ -54,29 +53,49 @@ body {
     justify-content: center;
     width: 42px;
     height: 42px;
-    border-radius: 8px;
-    border: 2px solid #ff6f61;
-    background-color: #fff;
-    color: #ff6f61;
     font-size: 20px;
     text-decoration: none;
     transition: all 0.3s;
 }
 
 .botao-carrinho:hover {
-    background-color: #ff6f61;
-    color: #fff;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 /* ============================
-   Catálogo de produtos
+   Catálogo dos produtos
 ============================ */
+
+/* Caixas de busca e filtros */
+#busca {
+    width: 350px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+}
+
+#filtroCategoria, #ordenar {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.filtros {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    gap: 10px;
+}
+
 #catalogo {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 30px 40px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 10px 40px;
     justify-content: center;
     max-width: 90vw;
     margin: 0 auto;
@@ -242,6 +261,14 @@ body {
     border-color: #ff6f61;
 }
 
+#modalDescricao {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 10px;
+    text-align: center;
+}
+
 /* Botão adicionar ao carrinho no modal */
 #adicionarModal {
     padding: 12px 18px;
@@ -290,5 +317,10 @@ body {
     .miniaturas img {
         width: 50px;
         height: 50px;
+    }
+
+    #catalogo {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        padding: 10px;
     }
 }

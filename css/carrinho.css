@@ -18,8 +18,8 @@ h1 {
 /* Botão voltar */
 .voltar {
     padding: 10px 14px;
-    background-color: #ccc;
-    color: #000;
+    background-color: #333;
+    color: #f5f5f5;
     border: none;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -29,8 +29,7 @@ h1 {
 }
 
 .voltar:hover {
-    background-color: #aaa;
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 /* Lista de itens */
@@ -79,11 +78,6 @@ h1 {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-}
-
-.quantidade-container button:hover {
-    background-color: #e85b50;
-    transform: scale(1.1);
 }
 
 .quantidade-container span {

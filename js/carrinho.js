@@ -11,7 +11,7 @@ function renderizarCarrinho() {
 
     if (carrinho.length === 0) {
         itensCarrinho.innerHTML = "<p>Seu carrinho está vazio.</p>";
-        totalCarrinho.textContent = "0.00";
+        totalCarrinho.textContent = "0,00";
 
         // Desabilita botão de checkout
         botaoCheckout.disabled = true;
@@ -37,7 +37,7 @@ function renderizarCarrinho() {
                 <span>${item.quantidade}</span>
                 <button class="incrementar" data-id="${item.id}">+</button>
             </div>
-            <span>R$ ${(item.preco*item.quantidade).toFixed(2)}</span>
+            <span>R$ ${(item.preco*item.quantidade).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         `;
 
         div.style.animation = "none";
@@ -46,7 +46,7 @@ function renderizarCarrinho() {
         itensCarrinho.appendChild(div);
     });
 
-    totalCarrinho.textContent = total.toFixed(2);
+    totalCarrinho.textContent = total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     // Eventos dos botões
     document.querySelectorAll(".incrementar").forEach(btn => {
