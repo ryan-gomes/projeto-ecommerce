@@ -31,20 +31,26 @@ function renderizarCarrinho() {
 
         const div = document.createElement("div");
         div.innerHTML = `
-            <span>${item.nome}</span>
+        <span>${item.nome}</span>
+        <div class="quantidade-preco">
             <div class="quantidade-container">
                 <button class="decrementar" data-id="${item.id}">-</button>
                 <span>${item.quantidade}</span>
                 <button class="incrementar" data-id="${item.id}">+</button>
             </div>
-            <span>R$ ${(item.preco*item.quantidade).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-        `;
+            <span>R$ ${(item.preco * item.quantidade).toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</span>
+        </div>
+    `;
 
         div.style.animation = "none";
         requestAnimationFrame(() => { div.style.animation = ""; });
 
         itensCarrinho.appendChild(div);
     });
+
 
     totalCarrinho.textContent = total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 

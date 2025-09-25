@@ -20,6 +20,8 @@ body {
 
 /* === Navegação superior === */
 .nav-top {
+    max-width: 100%;
+    overflow-x: hidden;
     display: grid;
     grid-template-areas: "logo search cart";
     grid-template-columns: 70px 1fr 50px;
@@ -43,6 +45,10 @@ body {
     align-items: center;
     justify-self: center;
     grid-area: search;
+}
+
+.nav-center input[type="text"] {
+  width: 100%;
 }
 
 .nav-right {
@@ -315,61 +321,68 @@ body {
 }
 
 /* === Responsividade === */
-@media (max-width: 900px) {
+@media (max-width: 810px) {
     .card img {
         height: 160px;
     }
+
+    .nav-top {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "logo logo"
+            "search cart";
+        row-gap: 10px;
+        padding: 15px 20px;
+        justify-items: center;
+        align-items: center;
+    }
+
 }
 
 @media (max-width: 600px) {
     .nav-top {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "logo logo"
-      "search cart";
-    row-gap: 10px;
-    padding: 15px 20px;
-    justify-items: center;
-    align-items: center;
-  }
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "logo logo"
+            "search cart";
+        row-gap: 10px;
+        padding: 15px 20px;
+        justify-items: center;
+        align-items: center;
+    }
 
-  /* logo centralizada na primeira linha */
-  .nav-left {
-    grid-area: logo;
-    justify-self: center;
-  }
+    /* logo centralizada na primeira linha */
+    .nav-left {
+        justify-self: center;
+    }
 
-  /* search ficará na segunda linha, coluna 1 (flexível) */
-  .nav-center {
-    grid-area: search;
-    justify-self: start;   /* começa na esquerda da coluna */
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
+    .nav-center {
+        justify-self: start;
+        width: 100%;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
 
-  /* cart na segunda linha, coluna 2 (tamanho automático) */
-  .nav-right {
-    grid-area: cart;
-    justify-self: end;
-    display: flex;
-    align-items: center;
-  }
+    .nav-right {
+        justify-self: end;
+        display: flex;
+        align-items: center;
+    }
 
-  /* Faz o input de busca usar o espaço disponível nesta linha */
-  .nav-center input[type="text"],
-  .nav-center #busca {
-    flex: 1;
-    min-width: 120px;
-  }
+    /* Faz o input de busca usar o espaço disponível nesta linha */
+    .nav-center input[type="text"],
+    .nav-center #busca {
+        flex: 1;
+        min-width: 120px;
+    }
 
-  /* ajuste do botão do carrinho se for <a> */
-  .botao-carrinho {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+    /* ajuste do botão do carrinho se for <a> */
+    .botao-carrinho {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     .miniaturas img {
         width: 50px;

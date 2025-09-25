@@ -36,7 +36,7 @@ h1 {
 #itensCarrinho div {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 12px;
     background-color: #fff;
     border-radius: 10px;
@@ -53,6 +53,38 @@ h1 {
     box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
+#itensCarrinho div .quantidade-preco {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+#itensCarrinho div .quantidade-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#itensCarrinho div .quantidade-container button {
+    padding: 2px 6px;
+    border: none;
+    border-radius: 4px;
+    background-color: #eee;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    transition: background 0.2s;
+}
+
+#itensCarrinho div .quantidade-container button:hover {
+    background-color: #ddd;
+}
+
+#itensCarrinho div .quantidade-container span {
+    font-size: 13px;
+}
+
 @keyframes fadeInItem {
     to {
         opacity: 1;
@@ -60,37 +92,10 @@ h1 {
     }
 }
 
-/* Botões de quantidade */
-.quantidade-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.quantidade-container button {
-    width: 32px;
-    height: 32px;
-    border: none;
-    background-color: #ff6f61;
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.quantidade-container span {
-    min-width: 24px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
 /* Total */
-#totalCarrinho {
+.total {
+    text-align: right;
     font-weight: bold;
-    color: #ff6f61;
     transition: all 0.3s ease;
     margin-top: 15px;
 }
