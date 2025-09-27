@@ -23,7 +23,7 @@ function renderizarCarrinho() {
 
     // Reabilita botão caso tenha itens
     botaoCheckout.disabled = false;
-    botaoCheckout.style.backgroundColor = "#ff6f61";
+    botaoCheckout.style.backgroundColor = "#7c3aed";
     botaoCheckout.style.cursor = "pointer";
 
     carrinho.forEach(item => {

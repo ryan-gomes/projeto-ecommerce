@@ -159,7 +159,10 @@ function renderizarCatalogo(produtosRender) {
             <div class="info">
                 <h3>${prod.nome}</h3>
                 <p>R$ ${prod.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <button onclick="adicionarCarrinhoOuDetalhe(${prod.id})">Ver Detalhes</button>
+                <div class="botoes-card">
+                    <button class="detalhes-btn" onclick="adicionarCarrinhoOuDetalhe(${prod.id})">Ver Detalhes</button>
+                    <button class="carrinho-btn" onclick="adicionarCarrinho(${prod.id})">Adicionar</button>
+                </div>
             </div>
         `;
 
@@ -226,7 +229,7 @@ function adicionarCarrinho(id) {
         gravity: "top",
         position: "center",
         style: {
-            background: "#ff6f61",
+            background: "#4CAF50",
             color: "#fff",
             borderRadius: "6px",
             padding: "10px 16px",

@@ -1,4 +1,9 @@
-/* ======== Reset básico ======== */
+:root {
+    --cor-primaria: #7c3aed;
+    --cor-secundaria: #9158f3;
+    --cor-fundo: #fff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -32,15 +37,15 @@ header h1 {
 
 header nav a {
   text-decoration: none;
-  background-color: #ff6f61;
+  background-color: var(--cor-primaria);
   color: #fff;
   padding: 10px 16px;
   border-radius: 6px;
-  border: 2px solid #ff6f61;
+  border: 2px solid var(--cor-primaria);
   transition: all 0.3s ease;
 }
 header nav a:hover {
-  background-color: #e85b50;
+  background-color: var(--cor-secundaria);
 }
 
 /* ======== Container principal ======== */
@@ -63,7 +68,7 @@ main {
 }
 
 #resumoCarrinho h2 {
-  color: #ff6f61;
+  color: var(--cor-primaria);
   font-size: 1.6rem;
   margin-bottom: 20px;
   text-align: center;
@@ -104,7 +109,7 @@ main {
     width: 32px;
     height: 32px;
     border: none;
-    background-color: #ff6f61;
+    background-color: var(--cor-primaria);
     color: #fff;
     font-size: 18px;
     font-weight: bold;
@@ -150,7 +155,7 @@ input[type="text"] {
   transition: border-color 0.3s ease;
 }
 input[type="text"]:focus {
-  border-color: #ff6f61;
+  border-color: var(--cor-secundaria);
   outline: none;
 }
 
@@ -169,13 +174,13 @@ input[type="text"]:focus {
   font-size: 0.9rem;
   margin-top: -10px;
   margin-bottom: 15px;
-  color: #ff6f61;
+  color: var(--cor-primaria);
   text-align: center;
 }
 
 /* Botão finalizar compra */
 button[type="submit"] {
-  background-color: #ff6f61;
+  background-color: var(--cor-primaria);
   color: #fff;
   padding: 14px;
   font-size: 1.1rem;
@@ -185,8 +190,9 @@ button[type="submit"] {
   transition: all 0.3s ease;
 }
 button[type="submit"]:hover {
-  background-color: #e85b50;
+  background-color: var(--cor-secundaria);
 }
+
 button[type="submit"]:disabled {
   background-color: #ccc;
   cursor: not-allowed;

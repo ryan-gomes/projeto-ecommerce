@@ -1,3 +1,9 @@
+:root {
+    --cor-primaria: #7c3aed;
+    --cor-secundaria: #9158f3;
+    --cor-fundo: #fff;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -18,7 +24,7 @@ h1 {
 /* Botão voltar */
 .voltar {
     padding: 10px 14px;
-    background-color: #333;
+    background-color: var(--cor-primaria);
     color: #f5f5f5;
     border: none;
     border-radius: 8px;
@@ -30,6 +36,7 @@ h1 {
 
 .voltar:hover {
     transform: scale(1.02);
+    background-color: var(--cor-secundaria);
 }
 
 /* Lista de itens */
@@ -103,7 +110,7 @@ h1 {
 /* Botão finalizar */
 .finalizar {
     padding: 14px;
-    background-color: #ff6f61;
+    background-color: var(--cor-primaria);
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -116,7 +123,7 @@ h1 {
 }
 
 .finalizar:hover {
-    background-color: #e85b50;
+    background-color: #9158f3;
     transform: scale(1.02);
 }
 

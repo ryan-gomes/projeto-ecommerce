@@ -13,8 +13,8 @@ body {
 }
 
 :root {
-    --cor-primaria: #ff6f61;
-    --cor-secundaria: #333;
+    --cor-primaria: #7c3aed;
+    --cor-secundaria: #9158f3;
     --cor-fundo: #fff;
 }
 
@@ -48,7 +48,7 @@ body {
 }
 
 .nav-center input[type="text"] {
-  width: 100%;
+    width: 100%;
 }
 
 .nav-right {
@@ -69,7 +69,7 @@ body {
     position: absolute;
     top: -6px;
     right: -10px;
-    background-color: #e63946;
+    background-color: var(--cor-primaria);
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -163,19 +163,38 @@ body {
     color: #333;
 }
 
-.card button {
+.botoes-card {
+    display: flex;
+    gap: 8px;
     margin-top: 8px;
-    background: #ff6f61;
-    color: #fff;
-    padding: 8px 14px;
+    justify-content: center;
+}
+
+.botoes-card button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s;
 }
 
-.card button:hover {
-    background: #e55a4f;
+.detalhes-btn {
+    background-color: var(--cor-primaria);
+    color: #fff;
+}
+
+.detalhes-btn:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.carrinho-btn {
+    background-color: var(--cor-primaria);
+    color: #fff;
+}
+
+.carrinho-btn:hover {
+    background-color: var(--cor-secundaria);
 }
 
 /* === Modal dos produtos === */
@@ -241,7 +260,7 @@ body {
 }
 
 .modal .fechar:hover {
-    color: #ff6f61;
+    color: var(--cor-secundaria);
 }
 
 .modal-content h2 {
@@ -253,7 +272,7 @@ body {
 .modal-content p#modalPreco {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #ff6f61;
+    color: var(--cor-primaria);
     margin-bottom: 15px;
 }
 
@@ -289,7 +308,7 @@ body {
 .miniaturas img:hover {
     transform: scale(1.1);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border-color: #ff6f61;
+    border-color: var(--cor-primaria);
 }
 
 #modalDescricao {
@@ -303,7 +322,7 @@ body {
 /* Botão adicionar ao carrinho no modal */
 #adicionarModal {
     padding: 12px 18px;
-    background-color: #ff6f61;
+    background-color: var(--cor-primaria);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -316,8 +335,47 @@ body {
 }
 
 #adicionarModal:hover {
-    background-color: #e85b50;
+    background-color: var(--cor-secundaria);
     transform: scale(1.05);
+}
+
+/* === Rodapé === */
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 15px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-info p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social .social-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.footer-social .social-link:hover {
+    color: var(--cor-primaria);
 }
 
 /* === Responsividade === */
@@ -394,4 +452,12 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center
+    }
 }
